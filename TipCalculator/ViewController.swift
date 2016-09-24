@@ -9,6 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var billAmountTextField: UITextField!
+    @IBOutlet weak var numberOfPeopleTextField: UITextField!
+    @IBOutlet weak var tipPercentTextField: UITextField!
+    
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var eachPersonLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +26,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
+    
+    func saveBill(){
+        
+    }
+    
+    func updateTotal(){
+        
+    }   
 }
 
