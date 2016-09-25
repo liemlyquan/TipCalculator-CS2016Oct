@@ -9,11 +9,11 @@
 import Foundation
 
 class Bill {
-    let amount: Int
+    let amount: Float
     let numberOfPeople: Int
-    let tipPercent: Int
+    let tipPercent: Float
     
-    init(amount: Int, numberOfPeople: Int, tipPercent: Int){
+    init(amount: Float, numberOfPeople: Int, tipPercent: Float){
         self.amount = amount
         self.numberOfPeople = numberOfPeople
         self.tipPercent = tipPercent

@@ -13,6 +13,8 @@
 		9980BA951D9408F90062C7BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9980BA941D9408F90062C7BD /* Assets.xcassets */; };
 		9980BA981D9408F90062C7BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9980BA961D9408F90062C7BD /* LaunchScreen.storyboard */; };
 		99B4D9C41D95A37C0055B022 /* Bill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4D9C31D95A37C0055B022 /* Bill.swift */; };
+		99B4D9C61D96588B0055B022 /* BillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4D9C51D96588B0055B022 /* BillViewModel.swift */; };
+		99EFD2301D97A762006ED206 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 99EFD22F1D97A762006ED206 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		9980BA971D9408F90062C7BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9980BA991D9408F90062C7BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99B4D9C31D95A37C0055B022 /* Bill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bill.swift; sourceTree = "<group>"; };
+		99B4D9C51D96588B0055B022 /* BillViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillViewModel.swift; sourceTree = "<group>"; };
+		99EFD22F1D97A762006ED206 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				9980BA941D9408F90062C7BD /* Assets.xcassets */,
 				9980BA961D9408F90062C7BD /* LaunchScreen.storyboard */,
 				9980BA991D9408F90062C7BD /* Info.plist */,
+				99B4D9C51D96588B0055B022 /* BillViewModel.swift */,
+				99EFD22F1D97A762006ED206 /* README.md */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9980BA901D9408F90062C7BD /* ViewController.swift in Sources */,
+				99B4D9C61D96588B0055B022 /* BillViewModel.swift in Sources */,
+				99EFD2301D97A762006ED206 /* README.md in Sources */,
 				99B4D9C41D95A37C0055B022 /* Bill.swift in Sources */,
 				9980BA8E1D9408F90062C7BD /* AppDelegate.swift in Sources */,
 			);
