@@ -18,6 +18,7 @@ The following **optional** features are implemented:
 * [x] Using locale-specific currency and currency thousands separators.
 * [x] Keyboard is the first responder on app startup
 
+
 The following **additional** features are implemented:
 * [x] Save history
 
