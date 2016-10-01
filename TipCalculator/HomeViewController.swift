@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class HomeViewController: UITableViewController {
-    let labelList = ["Bill", "Tip percent", "Number of people", "Total", "Each person"]
+    let labelList = ["Bill", "Tip percent", "Number of people", "Total", "Each"]
     enum CellEnumeration {
         case amount, tip, numberOfPeople,total, each
     }
@@ -18,7 +18,13 @@ class HomeViewController: UITableViewController {
     var amount: Float = 0
     var numberOfPeople: Int = 1
     var tipPercent: Float = 0
+    
     var billList = [NSManagedObject]()
+    
+    let formatter = NSNumberFormatter()
+    
+    var didReturnFromSettingsViewController = false
+
  
     override func viewDidLoad(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -30,14 +36,23 @@ class HomeViewController: UITableViewController {
         cell.cellTextField.becomeFirstResponder()
     }
     
-    
-
     func dismissKeyboard(){
         self.view.endEditing(true)
     }
 
     override func viewWillAppear(animated: Bool) {
+        if (NSUserDefaults.standardUserDefaults().boolForKey("thousandSeparator") == true){
+            formatter.numberStyle = .DecimalStyle
+        } else {
+            formatter.numberStyle = .NoStyle
+        }
+        if (didReturnFromSettingsViewController == true){
+            updateBillAmountTextField()
+            updateTotalLabel()
+            updateEachPersonLabel()
+        }
         self.tableView.reloadData()
+
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,7 +77,7 @@ class HomeViewController: UITableViewController {
         
         if CellEnumeration.amount.hashValue == indexPath.row {
             cell.cellTextField.enabled = true
-            cell.cellTextField.addTarget(self, action: #selector(updateBill), forControlEvents: .EditingChanged)
+            cell.cellTextField.addTarget(self, action: #selector(editBillAmount), forControlEvents: .EditingChanged)
         } else if CellEnumeration.tip.hashValue == indexPath.row {
             let pan = UIPanGestureRecognizer(target: self, action: #selector(adjustTipPercent))
             cell.addGestureRecognizer(pan)
@@ -72,11 +87,16 @@ class HomeViewController: UITableViewController {
             cell.addGestureRecognizer(pan)
             cell.cellTextField.text = "1"
         }
+        
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return (UIScreen.mainScreen().bounds.size.height - 64) / 5
+    }
+    
+    @IBAction func prepareForUnwind(sender: UIStoryboardSegue){
+        didReturnFromSettingsViewController = true
     }
     
     @IBAction func onTapSaveButton(sender: UIButton){
@@ -105,6 +125,12 @@ class HomeViewController: UITableViewController {
         return UIColor(red: components.R, green: components.G, blue: components.B, alpha: 1)
     }
     
+    func editBillAmount(sender: UITextField){
+        getBillAmount()
+        updateBillAmountTextField()
+        updateBill()
+    }
+    
     func adjustTipPercent(sender: UIPanGestureRecognizer){
         tipPercent += Float(Int(sender.translationInView(self.view!).x / 20))
         if tipPercent < 0 {
@@ -129,19 +155,23 @@ class HomeViewController: UITableViewController {
     
 
     func updateBill(){
-        updateBillAmount(CellEnumeration.amount.hashValue)
         updateTotalLabel()
         updateEachPersonLabel()
     }
     
+    func updateBillAmountTextField(){
+        let cell = getCellFromIndex(CellEnumeration.amount.hashValue)
+        cell.cellTextField.text = formatter.stringFromNumber(amount)
+    }
+    
     func updateTotalLabel(){
         let cell = getCellFromIndex(CellEnumeration.total.hashValue)
-        cell.cellTextField.text = String(getTotal())
+        cell.cellTextField.text = formatter.stringFromNumber(getTotal())
     }
     
     func updateEachPersonLabel(){
         let cell = getCellFromIndex(CellEnumeration.each.hashValue)
-        cell.cellTextField.text = String(getTotalEachPerson())
+        cell.cellTextField.text = formatter.stringFromNumber(getTotalEachPerson())
     }
 
     func updateNumberOfPeopleTextField(){
@@ -153,6 +183,8 @@ class HomeViewController: UITableViewController {
         let cell = getCellFromIndex(CellEnumeration.tip.hashValue)
         cell.cellTextField.text = "\(tipPercent)%"
     }
+    
+
 
     func getTotalEachPerson() -> Float {
         return getTotal() / Float(numberOfPeople)
@@ -162,11 +194,12 @@ class HomeViewController: UITableViewController {
         return (amount * Float(1 + tipPercent))
     }
     
-    func updateBillAmount(index: Int){
-        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! HomeTableViewCell
-        guard let billAmountText = cell.cellTextField .text as String! else {
+    func getBillAmount(){
+        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: CellEnumeration.amount.hashValue, inSection: 0)) as! HomeTableViewCell
+        guard var billAmountText = cell.cellTextField .text as String! else {
             return
         }
+        billAmountText = billAmountText.stringByReplacingOccurrencesOfString(",", withString: "")
         let billAmount = Float(billAmountText)
         guard let billAmountUnwrapped = billAmount as Float! else {
             return

@@ -11,33 +11,40 @@ import UIKit
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var themeIndicatorLabel: UILabel!
     @IBOutlet weak var defaultTipPercentLabel: UILabel!
+    @IBOutlet weak var thousandSeparatorSwitch: UISwitch!
 
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        // Do any additional setup after loading the view.
+        let themeName = NSUserDefaults.standardUserDefaults().stringForKey("theme")
+        if let themeName = themeName as String! {
+            themeIndicatorLabel.text = themeName.capitalizedString
+        }
+        let didEnabledthousandSeparator = NSUserDefaults.standardUserDefaults().boolForKey("thousandSeparator")
+        if let didEnabledthousandSeparator = didEnabledthousandSeparator as Bool! {
+            thousandSeparatorSwitch.setOn(didEnabledthousandSeparator, animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func toggleThousandSeparator(){
-        
+    @IBAction func onToggleThousandSeparator(sender: UISwitch){
+        var value: Bool
+        if sender.on == true {
+            value = true
+        } else {
+            value = false
+        }
+        print(value)
+        NSUserDefaults.standardUserDefaults().setBool(value, forKey: "thousandSeparator")
     }
-    
     @IBAction func onChangeTipPercent(sender: UISlider){
-        NSUserDefaults.standardUserDefaults()
+        let value = Int(sender.value)
+        defaultTipPercentLabel.text = "\(value)%"
+        NSUserDefaults.standardUserDefaults().setInteger(Int(value), forKey: "defaultTipPercent")
     }
-    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        if indexPath.row == 1 {
-//            
-//        }
-//    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
