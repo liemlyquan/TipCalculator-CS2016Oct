@@ -15,10 +15,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeTableViewCell" id="aYz-yG-feg" customClass="HomeTableViewCell" customModule="TipCalculator" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="113.5"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="113.59999847412109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aYz-yG-feg" id="hO8-UB-YvC">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="113.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="113.59999847412109"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5D-4O-vhA">
@@ -54,7 +54,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="m0H-fk-P3I">
-                        <barButtonItem key="leftBarButtonItem" title="Save" id="grx-cm-JA7"/>
+                        <barButtonItem key="leftBarButtonItem" title="Save" id="grx-cm-JA7">
+                            <connections>
+                                <action selector="onTapSaveButton:" destination="ByY-cX-D57" id="CMm-xh-5AW"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="QGp-Wr-O0B">
                             <connections>
                                 <segue destination="7gW-2T-p3p" kind="push" id="Go7-nc-003"/>
@@ -157,6 +161,45 @@
                                             <segue destination="bRe-tY-zbQ" kind="push" id="A0a-mw-Lb5"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="88" id="E9P-vD-EAF">
+                                        <rect key="frame" x="0.0" y="295.5" width="320" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E9P-vD-EAF" id="P5R-VG-eeI">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="t03-Og-AQ4">
+                                                    <rect key="frame" x="190" y="29" width="124" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="7QT-EH-ZPO"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="onChangeTipPercent:" destination="7gW-2T-p3p" eventType="valueChanged" id="DaF-bW-8a6"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpS-DS-zGD">
+                                                    <rect key="frame" x="240.5" y="59" width="23.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default tip rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fI-4d-pje">
+                                                    <rect key="frame" x="16" y="33" width="113.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2fI-4d-pje" firstAttribute="centerY" secondItem="P5R-VG-eeI" secondAttribute="centerY" id="HYa-at-QPf"/>
+                                                <constraint firstItem="gpS-DS-zGD" firstAttribute="top" secondItem="t03-Og-AQ4" secondAttribute="bottom" id="KMy-BX-Kd8"/>
+                                                <constraint firstItem="t03-Og-AQ4" firstAttribute="centerY" secondItem="P5R-VG-eeI" secondAttribute="centerY" id="ft9-fX-2GL"/>
+                                                <constraint firstAttribute="trailing" secondItem="t03-Og-AQ4" secondAttribute="trailing" constant="8" id="miN-H6-cwR"/>
+                                                <constraint firstItem="gpS-DS-zGD" firstAttribute="centerX" secondItem="t03-Og-AQ4" secondAttribute="centerX" id="r06-kb-Zgj"/>
+                                                <constraint firstItem="2fI-4d-pje" firstAttribute="leading" secondItem="P5R-VG-eeI" secondAttribute="leading" constant="16" id="wfc-Xm-2Bc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -167,6 +210,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="bC3-BO-Dxf"/>
                     <connections>
+                        <outlet property="defaultTipPercentLabel" destination="gpS-DS-zGD" id="Yp2-YW-jLF"/>
                         <outlet property="themeIndicatorLabel" destination="MZG-5F-MZf" id="fnB-Mt-i8h"/>
                     </connections>
                 </tableViewController>
@@ -178,18 +222,42 @@
         <scene sceneID="IRX-Bd-EAE">
             <objects>
                 <tableViewController id="bRe-tY-zbQ" customClass="HistoryViewController" customModule="TipCalculator" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hrl-kp-45w">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hrl-kp-45w">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RzD-WC-VYI">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryTableViewCell" id="RzD-WC-VYI" customClass="HistoryTableViewCell" customModule="TipCalculator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RzD-WC-VYI" id="rbU-Ch-RdX">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7P-wZ-B9V">
+                                            <rect key="frame" x="8" y="37.5" width="54" height="26.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzB-UX-rmE">
+                                            <rect key="frame" x="270" y="40" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="fzB-UX-rmE" secondAttribute="trailing" constant="8" id="6L2-OM-jFr"/>
+                                        <constraint firstItem="fzB-UX-rmE" firstAttribute="centerY" secondItem="rbU-Ch-RdX" secondAttribute="centerY" id="9oF-f9-TGw"/>
+                                        <constraint firstItem="C7P-wZ-B9V" firstAttribute="centerY" secondItem="rbU-Ch-RdX" secondAttribute="centerY" id="DXc-DW-B0w"/>
+                                        <constraint firstItem="C7P-wZ-B9V" firstAttribute="leading" secondItem="rbU-Ch-RdX" secondAttribute="leading" constant="8" id="YGe-Mx-kE8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellSubtitleLabel" destination="fzB-UX-rmE" id="hJa-vt-EfW"/>
+                                    <outlet property="cellTitleLabel" destination="C7P-wZ-B9V" id="3q1-Jh-d4T"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

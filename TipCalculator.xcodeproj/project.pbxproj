@@ -18,6 +18,7 @@
 		9980BA931D9408F90062C7BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9980BA911D9408F90062C7BD /* Main.storyboard */; };
 		9980BA951D9408F90062C7BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9980BA941D9408F90062C7BD /* Assets.xcassets */; };
 		9980BA981D9408F90062C7BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9980BA961D9408F90062C7BD /* LaunchScreen.storyboard */; };
+		99E971451D9F9633001C3B76 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E971441D9F9633001C3B76 /* HistoryTableViewCell.swift */; };
 		99EFD2301D97A762006ED206 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 99EFD22F1D97A762006ED206 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +36,8 @@
 		9980BA941D9408F90062C7BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9980BA971D9408F90062C7BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9980BA991D9408F90062C7BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99EFD22F1D97A762006ED206 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		99E971441D9F9633001C3B76 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		99EFD22F1D97A762006ED206 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = TipCalculator/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		9980BA811D9408F90062C7BD = {
 			isa = PBXGroup;
 			children = (
+				99EFD22F1D97A762006ED206 /* README.md */,
 				9907076E1D9C903D00A0F253 /* CoreData.framework */,
 				9980BA8C1D9408F90062C7BD /* TipCalculator */,
 				9980BA8B1D9408F90062C7BD /* Products */,
@@ -76,12 +79,12 @@
 				9980BA941D9408F90062C7BD /* Assets.xcassets */,
 				9980BA961D9408F90062C7BD /* LaunchScreen.storyboard */,
 				9980BA991D9408F90062C7BD /* Info.plist */,
-				99EFD22F1D97A762006ED206 /* README.md */,
 				9907076A1D9C8E8700A0F253 /* SettingsViewController.swift */,
 				9907076C1D9C8EC600A0F253 /* HistoryViewController.swift */,
 				990707981D9E4B5500A0F253 /* HomeViewController.swift */,
 				9907079A1D9E566500A0F253 /* HomeTableViewCell.swift */,
 				9907079C1D9E6D1E00A0F253 /* Constants.swift */,
+				99E971441D9F9633001C3B76 /* HistoryTableViewCell.swift */,
 			);
 			path = TipCalculator;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99E971451D9F9633001C3B76 /* HistoryTableViewCell.swift in Sources */,
 				99EFD2301D97A762006ED206 /* README.md in Sources */,
 				990707721D9C91DE00A0F253 /* Bill.xcdatamodeld in Sources */,
 				9980BA8E1D9408F90062C7BD /* AppDelegate.swift in Sources */,

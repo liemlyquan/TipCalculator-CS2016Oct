@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var themeIndicatorLabel: UILabel!
+    @IBOutlet weak var defaultTipPercentLabel: UILabel!
 
     
 
@@ -28,6 +29,10 @@ class SettingsViewController: UITableViewController {
         
     }
     
+    @IBAction func onChangeTipPercent(sender: UISlider){
+        NSUserDefaults.standardUserDefaults()
+    }
+    
 //    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        if indexPath.row == 1 {
 //            
@@ -39,7 +44,7 @@ class SettingsViewController: UITableViewController {
             case 0:
                 return 2
             case 1:
-                return 1
+                return 2
             default:
                 return 0
         }

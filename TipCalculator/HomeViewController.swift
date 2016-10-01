@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeViewController: UITableViewController {
     let labelList = ["Bill", "Tip percent", "Number of people", "Total", "Each person"]
@@ -16,7 +17,8 @@ class HomeViewController: UITableViewController {
     
     var amount: Float = 0
     var numberOfPeople: Int = 1
-    var tipPercent: Int = 0
+    var tipPercent: Float = 0
+    var billList = [NSManagedObject]()
  
     override func viewDidLoad(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -27,6 +29,8 @@ class HomeViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: CellEnumeration.amount.hashValue, inSection: 0)) as! HomeTableViewCell
         cell.cellTextField.becomeFirstResponder()
     }
+    
+    
 
     func dismissKeyboard(){
         self.view.endEditing(true)
@@ -75,6 +79,22 @@ class HomeViewController: UITableViewController {
         return (UIScreen.mainScreen().bounds.size.height - 64) / 5
     }
     
+    @IBAction func onTapSaveButton(sender: UIButton){
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity =  NSEntityDescription.entityForName("Bill", inManagedObjectContext:managedContext)
+        let bill = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        bill.setValue(amount, forKey: "amount")
+        bill.setValue(tipPercent, forKey: "tipPercent")
+        bill.setValue(numberOfPeople, forKey: "numberOfPeople")
+        do {
+            try managedContext.save()
+            billList.append(bill)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
+    }
+    
     func getColorFromHex(hex: Int) -> UIColor {
         // http://stackoverflow.com/questions/24263007/how-to-use-hex-colour-values-in-swift-ios
         let components = (
@@ -86,7 +106,7 @@ class HomeViewController: UITableViewController {
     }
     
     func adjustTipPercent(sender: UIPanGestureRecognizer){
-        tipPercent += Int(sender.translationInView(self.view!).x / 20)
+        tipPercent += Float(Int(sender.translationInView(self.view!).x / 20))
         if tipPercent < 0 {
             tipPercent = 0
         } else if tipPercent > 100 {

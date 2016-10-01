@@ -1,30 +1,24 @@
 # TipCalculator
 
-This is a tip calculator application for iOS written in Swift as the prework for Coderschool.
+This is a tip calculator application for iOS written in Swift as the prework for Coderschool 2016 October.
 
 Submitted by: **LY QUAN LIEM**
 
-Time spent: **** hours in total
+Time spent: **20** hours in total
 
 ## User Stories
-
-
 The following **required** functionality is complete:
 
 * [x] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 * [x] Settings page to change the default tip percentage.
 
 The following **optional** features are implemented:
-* [x] Using locale-specific currency and currency thousands separators.
+* [x] Using currency thousands separators.
 * [x] Keyboard is the first responder on app startup
 
 The following **additional** features are implemented:
 * [x] Save history
-
-**Wish list** (maybe it will be completed sometime before or after the deadline, when those above has finished):
-* [ ] Make scroll view for better navigation
-* [ ] UI improvement
-
+* [x] Implement theme
 
 ## Walkthrough of whole app
 
@@ -35,7 +29,7 @@ GIF created with LiceCap.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [yyyy] [Ly Quan Liem]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
