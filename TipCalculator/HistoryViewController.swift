@@ -11,9 +11,11 @@ import UIKit
 class HistoryViewController: UITableViewController {
     var billList = [NSManagedObject]()
     var managedContext: NSManagedObjectContext = NSManagedObjectContext()
-    
+    let formatter = NSNumberFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        formatter.numberStyle = .DecimalStyle
         initData()
 
     }
@@ -55,9 +57,13 @@ class HistoryViewController: UITableViewController {
         }
         
         let total = amountUnwrapped * Float(1 + tipPercentUnwrapped / 100.0)
-        let titleText = "$\(total)"
-        let subtitleText = "The bill amount is \(amountUnwrapped)\n" +
-                    "Tipped \(tipPercentUnwrapped)%\n" +
+        
+        let titleText = formatter.stringFromNumber(total)
+        
+        let amountText = formatter.stringFromNumber(amountUnwrapped) as String!
+        let percent = Int(tipPercentUnwrapped)
+        let subtitleText = "The bill amount is \(amountText)\n" +
+                    "Tipped \(percent)%\n" +
                     "Shared by \(numberOfPeopleUnwrapped) people"
         
         cell.cellTitleLabel.text = titleText

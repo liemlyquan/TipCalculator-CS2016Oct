@@ -4,7 +4,7 @@ This is a tip calculator application for iOS written in Swift as the prework for
 
 Submitted by: **LY QUAN LIEM**
 
-Time spent: **20** hours in total
+Time spent: **15** hours in total
 
 ## User Stories
 The following **required** functionality is complete:
@@ -18,11 +18,11 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 * [x] Save history
-* [x] Implement theme
+* [x] Theme
 
 ## Walkthrough of whole app
 
-![App Walkthrough](https://raw.githubusercontent.com/liemlyquan/TipCalculator/master/gif/TipCalculatorFinal1.gif)
+![App Walkthrough](https://raw.githubusercontent.com/liemlyquan/TipCalculator-CS2016Oct/master/record.gif)
 
 
 GIF created with LiceCap.

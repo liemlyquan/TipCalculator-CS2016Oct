@@ -29,11 +29,19 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+        let defaultTipRate = NSUserDefaults.standardUserDefaults().floatForKey("defaultTipPercent")
+        tipPercent = defaultTipRate
     }
     
     override func viewDidAppear(animated: Bool) {
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: CellEnumeration.amount.hashValue, inSection: 0)) as! HomeTableViewCell
-        cell.cellTextField.becomeFirstResponder()
+        if (didReturnFromSettingsViewController == true){
+            updateBillAmountTextField()
+            updateTotalLabel()
+            updateEachPersonLabel()
+        } else {
+            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: CellEnumeration.amount.hashValue, inSection: 0)) as! HomeTableViewCell
+            cell.cellTextField.becomeFirstResponder()
+        }
     }
     
     func dismissKeyboard(){
@@ -46,11 +54,7 @@ class HomeViewController: UITableViewController {
         } else {
             formatter.numberStyle = .NoStyle
         }
-        if (didReturnFromSettingsViewController == true){
-            updateBillAmountTextField()
-            updateTotalLabel()
-            updateEachPersonLabel()
-        }
+
         self.tableView.reloadData()
 
     }
@@ -81,7 +85,8 @@ class HomeViewController: UITableViewController {
         } else if CellEnumeration.tip.hashValue == indexPath.row {
             let pan = UIPanGestureRecognizer(target: self, action: #selector(adjustTipPercent))
             cell.addGestureRecognizer(pan)
-            cell.cellTextField.text = "\(tipPercent)%"
+            let percent = Int(tipPercent)
+            cell.cellTextField.text = "\(percent)%"
         } else if CellEnumeration.numberOfPeople.hashValue == indexPath.row {
             let pan = UIPanGestureRecognizer(target: self, action: #selector(adjustNumberOfPeople))
             cell.addGestureRecognizer(pan)
@@ -113,6 +118,11 @@ class HomeViewController: UITableViewController {
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
+        
+        let alert = UIAlertController(title: "Saved", message: "Your bill is saved. You can check back later from Settings -> View history", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Close", style: .Default, handler: nil)
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func getColorFromHex(hex: Int) -> UIColor {
@@ -181,7 +191,8 @@ class HomeViewController: UITableViewController {
     
     func updateTipPercentTextField(){
         let cell = getCellFromIndex(CellEnumeration.tip.hashValue)
-        cell.cellTextField.text = "\(tipPercent)%"
+        let percent = Int(tipPercent)
+        cell.cellTextField.text = "\(percent)%"
     }
     
 
@@ -191,7 +202,7 @@ class HomeViewController: UITableViewController {
     }
     
     func getTotal() -> Float {
-        return (amount * Float(1 + tipPercent))
+        return (amount * Float(1 + tipPercent / 100))
     }
     
     func getBillAmount(){
@@ -202,6 +213,7 @@ class HomeViewController: UITableViewController {
         billAmountText = billAmountText.stringByReplacingOccurrencesOfString(",", withString: "")
         let billAmount = Float(billAmountText)
         guard let billAmountUnwrapped = billAmount as Float! else {
+            amount = 0
             return
         }
         amount = billAmountUnwrapped

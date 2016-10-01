@@ -12,6 +12,8 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var themeIndicatorLabel: UILabel!
     @IBOutlet weak var defaultTipPercentLabel: UILabel!
     @IBOutlet weak var thousandSeparatorSwitch: UISwitch!
+    @IBOutlet weak var defaultTipPercentSlider: UISlider!
+
 
 
     override func viewDidLoad() {
@@ -23,6 +25,12 @@ class SettingsViewController: UITableViewController {
         let didEnabledthousandSeparator = NSUserDefaults.standardUserDefaults().boolForKey("thousandSeparator")
         if let didEnabledthousandSeparator = didEnabledthousandSeparator as Bool! {
             thousandSeparatorSwitch.setOn(didEnabledthousandSeparator, animated: false)
+        }
+        let defaultTipPercent = NSUserDefaults.standardUserDefaults().floatForKey("defaultTipPercent")
+        if let defaultTipPercent = defaultTipPercent as Float! {
+            defaultTipPercentSlider.setValue(defaultTipPercent, animated: false)
+            let percent = Int(defaultTipPercent)
+            defaultTipPercentLabel.text = "\(percent)%"
         }
     }
 
@@ -37,7 +45,6 @@ class SettingsViewController: UITableViewController {
         } else {
             value = false
         }
-        print(value)
         NSUserDefaults.standardUserDefaults().setBool(value, forKey: "thousandSeparator")
     }
     @IBAction func onChangeTipPercent(sender: UISlider){

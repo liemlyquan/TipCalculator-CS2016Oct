@@ -220,6 +220,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="defaultTipPercentLabel" destination="gpS-DS-zGD" id="Yp2-YW-jLF"/>
+                        <outlet property="defaultTipPercentSlider" destination="t03-Og-AQ4" id="JRk-Ph-Vbu"/>
                         <outlet property="themeIndicatorLabel" destination="MZG-5F-MZf" id="fnB-Mt-i8h"/>
                         <outlet property="thousandSeparatorSwitch" destination="pMi-7C-eGQ" id="mqg-iF-WHp"/>
                     </connections>
@@ -245,14 +246,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7P-wZ-B9V">
-                                            <rect key="frame" x="8" y="37.5" width="54" height="26.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7P-wZ-B9V">
+                                            <rect key="frame" x="16" y="48" width="49" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzB-UX-rmE">
-                                            <rect key="frame" x="270" y="40" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzB-UX-rmE">
+                                            <rect key="frame" x="270" y="49.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -262,7 +263,7 @@
                                         <constraint firstAttribute="trailing" secondItem="fzB-UX-rmE" secondAttribute="trailing" constant="8" id="6L2-OM-jFr"/>
                                         <constraint firstItem="fzB-UX-rmE" firstAttribute="centerY" secondItem="rbU-Ch-RdX" secondAttribute="centerY" id="9oF-f9-TGw"/>
                                         <constraint firstItem="C7P-wZ-B9V" firstAttribute="centerY" secondItem="rbU-Ch-RdX" secondAttribute="centerY" id="DXc-DW-B0w"/>
-                                        <constraint firstItem="C7P-wZ-B9V" firstAttribute="leading" secondItem="rbU-Ch-RdX" secondAttribute="leading" constant="8" id="YGe-Mx-kE8"/>
+                                        <constraint firstItem="C7P-wZ-B9V" firstAttribute="leading" secondItem="rbU-Ch-RdX" secondAttribute="leading" constant="16" id="YGe-Mx-kE8"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
