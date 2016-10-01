@@ -18,9 +18,13 @@ The following **optional** features are implemented:
 * [x] Using locale-specific currency and currency thousands separators.
 * [x] Keyboard is the first responder on app startup
 
-
 The following **additional** features are implemented:
 * [x] Save history
+
+**Wish list** (maybe it will be completed sometime before or after the deadline, when those above has finished):
+* [ ] Make scroll view for better navigation
+* [ ] UI improvement
+
 
 ## Walkthrough of whole app
 

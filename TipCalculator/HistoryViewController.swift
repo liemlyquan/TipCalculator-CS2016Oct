@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: UITableViewController {
     var billList = [NSManagedObject]()
     
     override func viewDidLoad() {
@@ -38,15 +38,5 @@ class HistoryViewController: UIViewController {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }
-    }
-}
-
-extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
     }
 }
