@@ -18,15 +18,15 @@ class SettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let themeName = NSUserDefaults.standardUserDefaults().stringForKey("theme")
+        let themeName = UserDefaults.standard.string(forKey: "theme")
         if let themeName = themeName as String! {
-            themeIndicatorLabel.text = themeName.capitalizedString
+            themeIndicatorLabel.text = themeName.capitalized
         }
-        let didEnabledthousandSeparator = NSUserDefaults.standardUserDefaults().boolForKey("thousandSeparator")
+        let didEnabledthousandSeparator = UserDefaults.standard.bool(forKey: "thousandSeparator")
         if let didEnabledthousandSeparator = didEnabledthousandSeparator as Bool! {
             thousandSeparatorSwitch.setOn(didEnabledthousandSeparator, animated: false)
         }
-        let defaultTipPercent = NSUserDefaults.standardUserDefaults().floatForKey("defaultTipPercent")
+        let defaultTipPercent = UserDefaults.standard.float(forKey: "defaultTipPercent")
         if let defaultTipPercent = defaultTipPercent as Float! {
             defaultTipPercentSlider.setValue(defaultTipPercent, animated: false)
             let percent = Int(defaultTipPercent)
@@ -38,22 +38,22 @@ class SettingsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func onToggleThousandSeparator(sender: UISwitch){
+    @IBAction func onToggleThousandSeparator(_ sender: UISwitch){
         var value: Bool
-        if sender.on == true {
+        if sender.isOn == true {
             value = true
         } else {
             value = false
         }
-        NSUserDefaults.standardUserDefaults().setBool(value, forKey: "thousandSeparator")
+        UserDefaults.standard.set(value, forKey: "thousandSeparator")
     }
-    @IBAction func onChangeTipPercent(sender: UISlider){
+    @IBAction func onChangeTipPercent(_ sender: UISlider){
         let value = Int(sender.value)
         defaultTipPercentLabel.text = "\(value)%"
-        NSUserDefaults.standardUserDefaults().setInteger(Int(value), forKey: "defaultTipPercent")
+        UserDefaults.standard.set(Int(value), forKey: "defaultTipPercent")
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case 0:
                 return 2
@@ -64,31 +64,31 @@ class SettingsViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 0 {
-            if indexPath.row == 1 {
-                let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet )
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath as NSIndexPath).section == 0 {
+            if (indexPath as NSIndexPath).row == 1 {
+                let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet )
                 for (key, _) in Constants.themes {
-                    let displayName = key.capitalizedString
-                    let languageAction = UIAlertAction(title: displayName, style: .Default, handler: {
+                    let displayName = key.capitalized
+                    let languageAction = UIAlertAction(title: displayName, style: .default, handler: {
                         (alert: UIAlertAction!) -> Void in
-                            self.setThemeColor(alert.title?.lowercaseString)
+                            self.setThemeColor(alert.title?.lowercased())
                     })
                     actionSheet.addAction(languageAction)
                 }
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
                     (alert: UIAlertAction) -> Void in
                 })
                 actionSheet.addAction(cancelAction)
-                self.presentViewController(actionSheet, animated: true, completion: nil)
+                self.present(actionSheet, animated: true, completion: nil)
             }
         }
     }
     
-    func setThemeColor(themeName: String?){
+    func setThemeColor(_ themeName: String?){
         if let themeName = themeName as String! {
-            NSUserDefaults.standardUserDefaults().setValue(themeName, forKey: "theme")
-            themeIndicatorLabel.text = themeName.capitalizedString
+            UserDefaults.standard.setValue(themeName, forKey: "theme")
+            themeIndicatorLabel.text = themeName.capitalized
         }
     }
 }
